@@ -1,6 +1,11 @@
 const deadCounter = document.getElementById('dead');
 const lostCounter = document.getElementById('lost');
-let currentHole = null;
+
+function resetGame(message) {
+    alert(message);
+    deadCounter.textContent = 0;
+    lostCounter.textContent = 0;
+}
 
 for (let i = 1; i <= 9; i++) {
     const hole = document.getElementById(`hole${i}`);
@@ -14,15 +19,3 @@ for (let i = 1; i <= 9; i++) {
         }
     };
 }
-
-function moveMole() {
-    if (currentHole) {
-        currentHole.classList.remove('hole_has-mole');
-    }
-    const randomHoleIndex = Math.floor(Math.random() * 9) + 1;
-    currentHole = document.getElementById(`hole${randomHoleIndex}`);
-    currentHole.classList.add('hole_has-mole');
-    setTimeout(moveMole, 1000 + Math.random() * 1000);
-}
-
-moveMole();
